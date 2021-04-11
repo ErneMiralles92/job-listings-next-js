@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import AppButton from '../components/AppButton/AppButton';
 import { ReactElement } from 'react';
 
 export default function Home(): ReactElement {
@@ -12,8 +11,6 @@ export default function Home(): ReactElement {
       </Head>
       <header className={styles.header} />
       <main className={styles.main}>
-        <AppButton />
-
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
             <h3>Documentation &rarr;</h3>
