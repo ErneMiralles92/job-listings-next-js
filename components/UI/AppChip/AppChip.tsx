@@ -7,13 +7,18 @@ type Props = {
   closable?: boolean;
   color?: string;
   textColor?: string;
+  className?: string;
   children: ReactNode;
 };
 
 const AppChip = (props: Props): ReactElement => {
   return props.shape === 'rounded' ? (
     <div
-      className={`${styles.container} ${props.shape === 'rounded' ? ` ${styles.rounded}` : ''}`}
+      className={[
+        styles.container,
+        props.shape === 'rounded' ? ` ${styles.rounded}` : '',
+        props.className,
+      ].join(' ')}
       style={{
         backgroundColor: props.color,
       }}
@@ -51,7 +56,7 @@ const AppChip = (props: Props): ReactElement => {
       ) : null}
     </div>
   ) : (
-    <div className={styles.container}>
+    <div className={[styles.container, props.className].join(' ')}>
       <div
         className={styles.content}
         style={{
