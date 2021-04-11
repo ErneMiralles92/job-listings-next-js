@@ -1,14 +1,21 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
+.header {
+  display: block;
+  flex: 1 1 auto;
+  background-color: hsl(180, 29%, 50%);
+  background-image: url('../public/images/bg-header-desktop.svg');
+  height: 156px;
+  width: 100%;
+  max-width: 100%;
+}
 .main {
-  padding: 5rem 0;
+  padding: 0;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -118,5 +125,11 @@
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+}
+
+@media screen and (max-width : 375px) {
+  .header {
+    background-image: url('../public/images/bg-header-mobile.svg');
   }
 }
