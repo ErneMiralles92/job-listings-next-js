@@ -5,15 +5,20 @@
     font-size: 0.875rem;
     height:28px;
     border-style: none;
-    background-color: hsl(180, 52%, 96%);
+    background-color: hsl(180, 31%, 95%);
     color: hsl(180, 29%, 50%);
     cursor: pointer;
     outline: none;
 }
 
 .button:hover {
-    background-color: hsl(180, 29%, 50%);
-    color: hsl(180, 52%, 96%); 
+  background-color: hsl(180, 29%, 50%);
+  color: hsl(180, 52%, 96%); 
+}
+
+.button:active {
+  background-color: hsl(180, 29%, 58%);
+  color: hsl(180, 52%, 96%); 
 }
 
 .button:focus {
