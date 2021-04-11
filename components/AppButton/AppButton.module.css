@@ -1,0 +1,22 @@
+.button {
+    border-radius: 4px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.875rem;
+    height:28px;
+    border-style: none;
+    background-color: hsl(180, 52%, 96%);
+    color: hsl(180, 29%, 50%);
+    cursor: pointer;
+    outline: none;
+}
+
+.button:hover {
+    background-color: hsl(180, 29%, 50%);
+    color: hsl(180, 52%, 96%); 
+}
+
+.button:focus {
+  background-color: hsl(180, 29%, 58%);
+  color: hsl(180, 52%, 96%); 
+}
