@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.content {
+  display: inline-flex;
+  padding: 6px;
+  font-size: 12px;
+  border-radius:  4px 0 0 4px;
+
+}
+
+.closeArea {
+  display: flex;
+  flex-grow: 14px;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  width: 28px;
+  background-color: hsl(180, 29%, 50%);
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+.closeArea:hover {
+  background-color: black;
+}
+
+.container.rounded {
+  padding: 1px;
+  border-radius: 36px;
+}
+.rounded > .content {
+  padding: 4px 4px 2px 4px;
+}
+
+.closeArea.rounded {
+  border-radius: 50%;
+}
