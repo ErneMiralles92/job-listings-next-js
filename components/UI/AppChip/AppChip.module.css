@@ -7,6 +7,8 @@
   display: inline-flex;
   padding: 8px;
   border-radius:  4px 0 0 4px;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .closeArea {
@@ -21,7 +23,7 @@
   cursor: pointer;
 }
 .closeArea:hover {
-  background-color: black;
+  background-color: hsl(180, 14%, 20%);
 }
 
 .container.rounded {
@@ -30,7 +32,7 @@
 }
 .rounded > .content {
   padding: 4px 6px 2px 6px;
-  font-size: 12px;
+  font-weight: 500;
 }
 
 .closeArea.rounded {

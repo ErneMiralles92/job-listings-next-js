@@ -25,3 +25,25 @@
   background-color: hsl(180, 29%, 58%);
   color: hsl(180, 52%, 96%); 
 }
+
+
+.button.text {
+  color: hsl(180, 14%, 20%);
+  background-color: transparent;
+}
+
+.button.text:hover {
+  color: hsl(180, 29%, 50%); 
+  text-decoration: underline;
+}
+
+.button.text:active {
+  color: hsl(180, 29%, 58%);
+  text-decoration: underline;
+}
+
+.button.text:focus{
+  color: hsl(180, 29%, 58%);
+  text-decoration: underline;
+}
+

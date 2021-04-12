@@ -1,10 +1,11 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState, useContext } from 'react';
 import AppCard from '../../UI/AppCard/AppCard';
 import JobModel from '../job-model';
 import Image from 'next/image';
 import styles from './JobCard.module.css';
 import AppChip from '../../UI/AppChip/AppChip';
 import AppButton from '../../UI/AppButton/AppButton';
+import JobsContext from '../../../context/jobs-context';
 
 type Props = {
   job: JobModel;
@@ -12,6 +13,7 @@ type Props = {
 
 export default function JobCard({ job }: Props): ReactElement {
   const [keywords, setKeywords] = useState([]);
+  const context = useContext(JobsContext);
   useEffect(() => {
     setKeywords([job.role, job.level, ...job.languages, ...job.tools]);
   }, [job]);
@@ -60,7 +62,7 @@ export default function JobCard({ job }: Props): ReactElement {
             {keywords.map((keyword, index) => (
               <AppButton
                 key={`${index}-keyword`}
-                onClickHandler={() => console.log('clicked ', keyword)}
+                onClickHandler={() => context.addFilter(keyword)}
                 className={styles.colMargin}
               >
                 {keyword}

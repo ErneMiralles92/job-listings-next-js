@@ -1,0 +1,11 @@
+.card {
+  margin-top: -32px;
+}
+
+.flexItem {
+  flex: auto;
+}
+
+.rawItem {
+  width: 80px;
+}

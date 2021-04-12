@@ -4,7 +4,8 @@ import btnStyles from './AppButton.module.css';
 type Props = {
   children?: ReactNode;
   onClickHandler?: () => void;
-  className: string;
+  className?: string;
+  type?: string;
 };
 const AppButton = (props: Props): ReactElement => {
   const btnEl = useRef(null);
@@ -17,7 +18,11 @@ const AppButton = (props: Props): ReactElement => {
     <button
       ref={btnEl}
       type="button"
-      className={[btnStyles.button, props.className].join(' ')}
+      className={[
+        btnStyles.button,
+        props.className,
+        props.type === 'text' ? btnStyles.text : '',
+      ].join(' ')}
       onClick={pressedButton}
     >
       {props.children}
@@ -25,4 +30,8 @@ const AppButton = (props: Props): ReactElement => {
   );
 };
 
+AppButton.defaultProps = {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onClickHandler: function () {},
+};
 export default AppButton;

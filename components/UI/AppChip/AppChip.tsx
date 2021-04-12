@@ -2,13 +2,16 @@ import React, { ReactElement, ReactNode } from 'react';
 import styles from './AppChip.module.css';
 import Image from 'next/image';
 
+type Shape = 'tile' | 'rounded';
+
 type Props = {
-  shape?: string;
+  shape?: Shape;
   closable?: boolean;
   color?: string;
   textColor?: string;
   className?: string;
   children: ReactNode;
+  onCloseClicked: () => void;
 };
 
 const AppChip = (props: Props): ReactElement => {
@@ -39,6 +42,7 @@ const AppChip = (props: Props): ReactElement => {
       </div>
       {props.closable ? (
         <div
+          onClick={props.onCloseClicked}
           className={`${styles.closeArea}  ${
             props.shape === 'rounded' ? ` ${styles.rounded}` : ''
           }`}
@@ -73,7 +77,7 @@ const AppChip = (props: Props): ReactElement => {
         </span>
       </div>
       {props.closable ? (
-        <div className={styles.closeArea}>
+        <div onClick={props.onCloseClicked} className={styles.closeArea}>
           <div
             style={{
               margin: 'auto',

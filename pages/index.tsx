@@ -1,10 +1,56 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import { ReactElement } from 'react';
+import { ReactElement, useEffect, useReducer, useState } from 'react';
 import JobCard from '../components/Jobs/JobCard/JobCard';
-import jobsList from '../data.json';
+import FilterCard from '../components/FilterCard/FilterCard';
+import jobsData from '../data.json';
+import JobContext from '../context/jobs-context';
+
+type Action =
+  | { type: 'add'; filter: string }
+  | { type: 'delete'; filter: string }
+  | { type: 'deleteAll' };
+
+const reducer = (state: string[], action: Action): string[] => {
+  switch (action.type) {
+    case 'add':
+      if (!state.includes(action.filter)) return [...state, action.filter];
+      return state;
+    case 'delete':
+      return state.filter((el: string): boolean => el !== action.filter);
+    case 'deleteAll':
+      return [];
+    default:
+      throw new Error();
+  }
+};
 
 export default function Home(): ReactElement {
+  const [filters, dispatchFilter] = useReducer(reducer, []);
+  const [jobs, setJobs] = useState<string[]>([]);
+  const addFilter = (filter: string) => {
+    dispatchFilter({ type: 'add', filter });
+  };
+
+  const removeFilter = (filter: string) => {
+    dispatchFilter({ type: 'delete', filter });
+  };
+
+  const removeAll = () => {
+    dispatchFilter({ type: 'deleteAll' });
+  };
+  useEffect(() => {
+    if (filters.length === 0) {
+      setJobs(jobsData);
+    } else {
+      setJobs(
+        jobsData.filter((job) => {
+          const keywords = [job.role, job.level, ...job.languages, ...job.tools];
+          return filters.every((filter) => keywords.includes(filter));
+        })
+      );
+    }
+  }, [filters]);
   return (
     <div>
       <Head>
@@ -15,10 +61,20 @@ export default function Home(): ReactElement {
       <div className={styles.container}>
         <main className={styles.main}>
           <div className={styles.grid}>
-            <div style={{ marginBottom: 64, width: '100%' }}></div>
-            {jobsList.map((job) => (
-              <JobCard key={job.id} job={job} />
-            ))}
+            <JobContext.Provider
+              value={{
+                filters: filters,
+                addFilter: addFilter,
+                removeFilter: removeFilter,
+                removeAll: removeAll,
+              }}
+            >
+              {filters.length > 0 ? <FilterCard /> : null}
+              <div style={{ marginBottom: 48, width: '100%' }}></div>
+              {jobs.map((job) => (
+                <JobCard key={job.id} job={job} />
+              ))}
+            </JobContext.Provider>
           </div>
         </main>
 
