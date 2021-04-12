@@ -5,6 +5,7 @@ import JobCard from '../components/Jobs/JobCard/JobCard';
 import FilterCard from '../components/FilterCard/FilterCard';
 import jobsData from '../data.json';
 import JobContext from '../context/jobs-context';
+import JobModel from '../components/Jobs/job-model';
 
 type Action =
   | { type: 'add'; filter: string }
@@ -27,7 +28,7 @@ const reducer = (state: string[], action: Action): string[] => {
 
 export default function Home(): ReactElement {
   const [filters, dispatchFilter] = useReducer(reducer, []);
-  const [jobs, setJobs] = useState<string[]>([]);
+  const [jobs, setJobs] = useState<JobModel[]>([]);
   const addFilter = (filter: string) => {
     dispatchFilter({ type: 'add', filter });
   };

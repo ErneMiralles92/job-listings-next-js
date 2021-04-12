@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default function JobCard({ job }: Props): ReactElement {
-  const [keywords, setKeywords] = useState([]);
+  const [keywords, setKeywords] = useState<string[]>([]);
   const context = useContext(JobsContext);
   useEffect(() => {
     setKeywords([job.role, job.level, ...job.languages, ...job.tools]);

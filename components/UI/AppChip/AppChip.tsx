@@ -11,7 +11,7 @@ type Props = {
   textColor?: string;
   className?: string;
   children: ReactNode;
-  onCloseClicked: () => void;
+  onCloseClicked?: () => void;
 };
 
 const AppChip = (props: Props): ReactElement => {
@@ -98,6 +98,8 @@ AppChip.defaultProps = {
   closable: false,
   color: 'black',
   textColor: 'white',
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onClickHandler: function () {},
 };
 
 export default AppChip;

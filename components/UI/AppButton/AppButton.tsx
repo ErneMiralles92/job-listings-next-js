@@ -8,11 +8,11 @@ type Props = {
   type?: string;
 };
 const AppButton = (props: Props): ReactElement => {
-  const btnEl = useRef(null);
+  const btnEl = useRef<HTMLButtonElement>(null);
 
   const pressedButton = () => {
-    btnEl.current.blur();
-    props.onClickHandler();
+    btnEl?.current?.blur();
+    if (props.onClickHandler) props.onClickHandler();
   };
   return (
     <button
