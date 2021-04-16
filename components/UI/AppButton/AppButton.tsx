@@ -1,37 +1,36 @@
-import React, { ReactElement, ReactNode, useRef } from 'react';
+import React, { FC, DetailedHTMLProps, ButtonHTMLAttributes, useRef } from 'react';
 import btnStyles from './AppButton.module.css';
 
+type BtnVariant = 'text' | undefined;
 type Props = {
-  children?: ReactNode;
-  onClickHandler?: () => void;
+  onClick?: () => void;
   className?: string;
-  type?: string;
-};
-const AppButton = (props: Props): ReactElement => {
+  variant?: BtnVariant;
+} & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
+
+const AppButton: FC<Props> = ({
+  variant,
+  className = '',
+  children,
+  onClick,
+  ...restArgs
+}: Props) => {
   const btnEl = useRef<HTMLButtonElement>(null);
 
   const pressedButton = () => {
     btnEl?.current?.blur();
-    if (props.onClickHandler) props.onClickHandler();
+    if (onClick) onClick();
   };
   return (
     <button
       ref={btnEl}
-      type="button"
-      className={[
-        btnStyles.button,
-        props.className,
-        props.type === 'text' ? btnStyles.text : '',
-      ].join(' ')}
+      className={[btnStyles.button, className, variant === 'text' ? btnStyles.text : ''].join(' ')}
       onClick={pressedButton}
+      {...restArgs}
     >
-      {props.children}
+      {children}
     </button>
   );
 };
 
-AppButton.defaultProps = {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onClickHandler: function () {},
-};
 export default AppButton;

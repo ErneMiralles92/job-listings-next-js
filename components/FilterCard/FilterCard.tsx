@@ -34,7 +34,7 @@ const FilterCard = (): ReactElement => {
         </div>
         <div className={styles.rawItem}>
           <div className={['row', 'justifyEnd'].join(' ')}>
-            <AppButton onClickHandler={context.removeAll} type={'text'}>
+            <AppButton onClick={context.removeAll} variant={'text'}>
               Clear
             </AppButton>
           </div>

@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState, useContext } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import AppCard from '../../UI/AppCard/AppCard';
 import JobModel from '../job-model';
 import Image from 'next/image';
@@ -62,7 +62,7 @@ export default function JobCard({ job }: Props): ReactElement {
             {keywords.map((keyword, index) => (
               <AppButton
                 key={`${index}-keyword`}
-                onClickHandler={() => context.addFilter(keyword)}
+                onClick={() => context.addFilter(keyword)}
                 className={styles.colMargin}
               >
                 {keyword}
