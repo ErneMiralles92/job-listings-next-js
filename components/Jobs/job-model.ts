@@ -1,4 +1,4 @@
-export default interface Job {
+type Job = {
   id: number;
   company: string;
   logo: string;
@@ -12,4 +12,5 @@ export default interface Job {
   location: string;
   languages: Array<string>;
   tools: Array<string>;
-}
+};
+export default Job;

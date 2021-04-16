@@ -5,7 +5,7 @@ import Image from 'next/image';
 import styles from './JobCard.module.css';
 import AppChip from '../../UI/AppChip/AppChip';
 import AppButton from '../../UI/AppButton/AppButton';
-import JobsContext from '../../../context/jobs-context';
+import { useJobsContext } from '../../../context/jobs-context';
 
 type Props = {
   job: JobModel;
@@ -13,7 +13,7 @@ type Props = {
 
 export default function JobCard({ job }: Props): ReactElement {
   const [keywords, setKeywords] = useState<string[]>([]);
-  const context = useContext(JobsContext);
+  const context = useJobsContext();
   useEffect(() => {
     setKeywords([job.role, job.level, ...job.languages, ...job.tools]);
   }, [job]);

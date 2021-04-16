@@ -1,12 +1,12 @@
-import React, { ReactElement, useContext } from 'react';
-import JobsContext from '../../context/jobs-context';
+import React, { ReactElement } from 'react';
+import { useJobsContext } from '../../context/jobs-context';
 import AppCard from '../UI/AppCard/AppCard';
 import AppChip from '../UI/AppChip/AppChip';
 import AppButton from '../UI/AppButton/AppButton';
 import styles from './FilterCard.module.css';
 
 const FilterCard = (): ReactElement => {
-  const context = useContext(JobsContext);
+  const context = useJobsContext();
   return (
     <AppCard className={styles.card} backgroundColor={'white'}>
       <div

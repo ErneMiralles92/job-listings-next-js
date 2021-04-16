@@ -4,7 +4,7 @@ import { ReactElement, useEffect, useReducer, useState } from 'react';
 import JobCard from '../components/Jobs/JobCard/JobCard';
 import FilterCard from '../components/FilterCard/FilterCard';
 import jobsData from '../data.json';
-import JobContext from '../context/jobs-context';
+import JobsProvider from '../context/jobs-context';
 import JobModel from '../components/Jobs/job-model';
 
 type Action =
@@ -62,7 +62,7 @@ export default function Home(): ReactElement {
       <div className={styles.container}>
         <main className={styles.main}>
           <div className={styles.grid}>
-            <JobContext.Provider
+            <JobsProvider
               value={{
                 filters: filters,
                 addFilter: addFilter,
@@ -75,7 +75,7 @@ export default function Home(): ReactElement {
               {jobs.map((job) => (
                 <JobCard key={job.id} job={job} />
               ))}
-            </JobContext.Provider>
+            </JobsProvider>
           </div>
         </main>
 
