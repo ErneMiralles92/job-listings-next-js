@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 import styles from './AppChip.module.css';
 import Image from 'next/image';
 
@@ -11,25 +11,33 @@ type Props = {
   textColor?: string;
   className?: string;
   children: ReactNode;
-  onCloseClicked?: () => void;
+  onCloseClick?: () => void;
 };
 
-const AppChip = (props: Props): ReactElement => {
-  return props.shape === 'rounded' ? (
+const AppChip: FC<Props> = ({
+  shape = 'rounded',
+  className = '',
+  color = 'black',
+  textColor = 'white',
+  children,
+  closable,
+  onCloseClick,
+}: Props) => {
+  return shape === 'rounded' ? (
     <div
       className={[
         styles.container,
-        props.shape === 'rounded' ? ` ${styles.rounded}` : '',
-        props.className,
+        shape === 'rounded' ? ` ${styles.rounded}` : '',
+        className,
       ].join(' ')}
       style={{
-        backgroundColor: props.color,
+        backgroundColor: color,
       }}
     >
       <div
         className={styles.content}
         style={{
-          color: props.textColor,
+          color: textColor,
         }}
       >
         <span
@@ -37,15 +45,13 @@ const AppChip = (props: Props): ReactElement => {
             padding: '2px 0',
           }}
         >
-          {props.children}
+          {children}
         </span>
       </div>
-      {props.closable ? (
+      {closable ? (
         <div
-          onClick={props.onCloseClicked}
-          className={`${styles.closeArea}  ${
-            props.shape === 'rounded' ? ` ${styles.rounded}` : ''
-          }`}
+          onClick={onCloseClick}
+          className={`${styles.closeArea}  ${shape === 'rounded' ? ` ${styles.rounded}` : ''}`}
         >
           <div
             style={{
@@ -60,12 +66,12 @@ const AppChip = (props: Props): ReactElement => {
       ) : null}
     </div>
   ) : (
-    <div className={[styles.container, props.className].join(' ')}>
+    <div className={[styles.container, className].join(' ')}>
       <div
         className={styles.content}
         style={{
-          backgroundColor: props.color,
-          color: props.textColor,
+          backgroundColor: color,
+          color: textColor,
         }}
       >
         <span
@@ -73,11 +79,11 @@ const AppChip = (props: Props): ReactElement => {
             padding: '2px 0',
           }}
         >
-          {props.children}
+          {children}
         </span>
       </div>
-      {props.closable ? (
-        <div onClick={props.onCloseClicked} className={styles.closeArea}>
+      {closable ? (
+        <div onClick={onCloseClick} className={styles.closeArea}>
           <div
             style={{
               margin: 'auto',
@@ -92,14 +98,4 @@ const AppChip = (props: Props): ReactElement => {
     </div>
   );
 };
-
-AppChip.defaultProps = {
-  shape: 'rounded',
-  closable: false,
-  color: 'black',
-  textColor: 'white',
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onClickHandler: function () {},
-};
-
 export default AppChip;

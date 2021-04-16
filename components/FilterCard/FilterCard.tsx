@@ -25,7 +25,7 @@ const FilterCard = (): ReactElement => {
                 color={'hsl(180, 31%, 95%)'}
                 textColor={'hsl(180, 29%, 50%)'}
                 className="colMargin"
-                onCloseClicked={() => context.removeFilter(filter)}
+                onCloseClick={() => context.removeFilter(filter)}
               >
                 {filter}
               </AppChip>
